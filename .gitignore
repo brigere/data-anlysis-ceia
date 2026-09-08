@@ -28,6 +28,7 @@ env/
 data/raw/
 data/interim/
 data/processed/
+dataset/
 *.csv
 *.tsv
 *.xlsx
@@ -66,3 +67,6 @@ Thumbs.db
 htmlcov/
 .mypy_cache/
 .ruff_cache/
+
+# coure notebooks
+# clases/
