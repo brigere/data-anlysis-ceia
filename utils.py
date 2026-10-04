@@ -31,5 +31,35 @@ def plot_histograma(data, column, figsize=(6, 3), bins=15, kde=True, mvd=True, s
     plt.xlabel(f'{column}')
     plt.ylabel('Frecuencia')
     plt.show()
-    
+
     return
+
+
+def plot_histograma_estadisticos(serie, bins=60, rango=None, titulo="", xlabel="", ylabel="Frecuencia", figsize=(10, 6)):
+    """Histograma de una serie con mediana, media y moda como líneas, y desvío, asimetría y curtosis en la leyenda.
+
+    Los estadísticos se calculan sobre toda la serie; `rango` solo recorta lo que se grafica.
+    """
+    moda = serie.mode()[0]
+    mediana = serie.median()
+    media = serie.mean()
+    skewness = serie.skew()
+    curtosis = serie.kurtosis()
+    desviacion_estandar = serie.std()
+
+    _, plot = plt.subplots(figsize=figsize)
+    plot.hist(serie, bins=bins, range=rango, color='blue', alpha=0.7)
+
+    plot.axvline(mediana, color='red', linestyle='--', label='Mediana ({:.1f})'.format(mediana))
+    plot.axvline(media, color="#42E850", linestyle='--', label='Media ({:.1f})'.format(media))
+    plot.axvline(moda, color="#c21ac2", linestyle='--', label='Moda ({:.1f})'.format(moda))
+    plot.plot([], [], ' ', label='Desv. estándar ({:.1f})'.format(desviacion_estandar))
+    plot.plot([], [], ' ', label='Asimetría ({:.2f})'.format(skewness))
+    plot.plot([], [], ' ', label='Curtosis ({:.2f})'.format(curtosis))
+
+    plot.set_title(titulo)
+    plot.set_xlabel(xlabel)
+    plot.set_ylabel(ylabel)
+    plot.legend()
+
+    plt.show()
