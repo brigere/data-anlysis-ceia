@@ -48,11 +48,11 @@ def plot_histograma_estadisticos(serie, bins=60, rango=None, titulo="", xlabel="
     desviacion_estandar = serie.std()
 
     _, plot = plt.subplots(figsize=figsize)
-    plot.hist(serie, bins=bins, range=rango, color='blue', alpha=0.7)
+    plot.hist(serie, bins=bins, range=rango, color="#96f1de", alpha=0.7)
 
     plot.axvline(mediana, color='red', linestyle='--', label='Mediana ({:.1f})'.format(mediana))
     plot.axvline(media, color="#42E850", linestyle='--', label='Media ({:.1f})'.format(media))
-    plot.axvline(moda, color="#c21ac2", linestyle='--', label='Moda ({:.1f})'.format(moda))
+    plot.axvline(moda, color="#ba19a2", linestyle='--', label='Moda ({:.1f})'.format(moda))
     plot.plot([], [], ' ', label='Desv. estándar ({:.1f})'.format(desviacion_estandar))
     plot.plot([], [], ' ', label='Asimetría ({:.2f})'.format(skewness))
     plot.plot([], [], ' ', label='Curtosis ({:.2f})'.format(curtosis))
